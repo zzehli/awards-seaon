@@ -5,7 +5,7 @@ import List from './components/List';
 
 function App() {
   const [inputText, setInputText] = useState("")
-  let inputHandler = (e) => {
+  const inputHandler = (e) => {
     var lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase)
   }
