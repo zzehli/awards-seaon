@@ -1,14 +1,27 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import './App.css';
 import List from './components/List';
+import { config } from './config';
 // import { TextField } from '@mui/material';
 
 function App() {
-  const [inputText, setInputText] = useState("")
+  const [inputText, setInputText] = useState("");
   const inputHandler = (e) => {
     var lowerCase = e.target.value.toLowerCase();
-    setInputText(lowerCase)
+    setInputText(lowerCase);
   }
+  useEffect(() => {
+
+    fetch('http://www.omdbapi.com/?' + new URLSearchParams(
+      {apikey: config.OMDB_KEY,
+       s:"facebook"
+        })
+      )
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+  }, [])
+  
+
   return (
     <div className="main">
       <div className='search'>

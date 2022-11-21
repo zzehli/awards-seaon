@@ -5,3 +5,6 @@
 - [ ] connect input with api to fetch data according to input
 - [ ] use `swr` package for the search
 - [ ] use material UI for better visual
+
+## Reference
+https://dev.to/salehmubashar/search-bar-in-react-js-545l
