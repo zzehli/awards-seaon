@@ -6,6 +6,7 @@ import { config } from './config';
 
 function App() {
   const [inputText, setInputText] = useState("");
+  const [searchRes, setSearchRes] = useState([]);
   const inputHandler = (e) => {
     var lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
@@ -18,7 +19,7 @@ function App() {
         })
       )
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => setSearchRes(data['Search'].map(elem => elem.Title)));
   }, [])
   
 
@@ -38,7 +39,8 @@ function App() {
           <input type="submit" value="Submit"/>
         </form>
       </div>
-      <List input = {inputText}/>
+      <List input = {inputText} 
+            titleList = {searchRes}/>
     </div>
   );
 }

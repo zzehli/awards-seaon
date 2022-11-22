@@ -1,19 +1,19 @@
 import { React } from "react";
-import data from './books.json';
 
 function List(props) {
-    const filteredData = data.filter((elem) => {
-        if (props.input === '') {
-            return elem;
-        } else {
-            return elem.title.toLowerCase().includes(props.input);
-        }
-    })
+    // const filteredData = props.titleList.filter((elem) => {
+    //     if (props.input === '') {
+    //         return elem;
+    //     } else {
+    //         return elem.Title.toLowerCase().includes(props.input);
+    //     }
+    // })
+    //console.log(props.titleList)
 
     return (
         <ul>
-            {filteredData.map((item) => (
-                <li key={item.url}>{item.title}</li>
+            {props.titleList.map((item, index) => (
+                <li key={index}>{item}</li>
             ))}
         </ul>
     )
