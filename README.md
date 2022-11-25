@@ -8,3 +8,6 @@
 
 ## Reference
 https://dev.to/salehmubashar/search-bar-in-react-js-545l
+https://devtrium.com/posts/async-functions-useeffect
+https://www.robinwieruch.de/react-hooks-fetch-data/
+

@@ -13,16 +13,32 @@ function App() {
     var lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
   }
-  
+
   useEffect(() => {
-    fetch('http://www.omdbapi.com/?' + new URLSearchParams(
-      {apikey: config.OMDB_KEY,
-       s: `${inputText}`})
-      )
-    .then((response) => response.json())
-    .then((data) => setSearchRes(data['Search'].map(elem => elem.Title)));
+    const fetchMovies = async () => {
+      setIsLoading(true);
+      const res = await fetch('http://www.omdbapi.com/?' + new URLSearchParams(
+                        {apikey: config.OMDB_KEY,
+                        s: `${inputText}`}));
+      const data = await res.json();
+      setSearchRes(data['Search'].map(elem => elem.Title));
+      setIsLoading(false);
+    };
+    fetchMovies();
   }, [inputText])
+  //   fetch('http://www.omdbapi.com/?' + new URLSearchParams(
+  //     {apikey: config.OMDB_KEY,
+  //      s: `${inputText}`})
+  //     )
+  //   .then((response) => response.json())
+  //   .then((data) => setSearchRes(data['Search'].map(elem => elem.Title)));
+  // }, [inputText])
   
+  // async function fetchMovies() {
+  //   const response = await fetch('/movies');
+  //   // waits until the request completes...
+  //   console.log(response);
+  // }
 
   return (
     <div className="main">
@@ -40,8 +56,12 @@ function App() {
           <input type="submit" value="Submit"/>
         </form>
       </div>
-      <List input = {inputText} 
-            titleList = {searchRes}/>
+      {isLoading? (
+        <div>Loading...</div>
+      ) : (
+        <List input = {inputText} 
+        titleList = {searchRes}/>
+      )}
     </div>
   );
 }
