@@ -7,20 +7,21 @@ import { config } from './config';
 function App() {
   const [inputText, setInputText] = useState("");
   const [searchRes, setSearchRes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const inputHandler = (e) => {
     var lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
   }
+  
   useEffect(() => {
-
     fetch('http://www.omdbapi.com/?' + new URLSearchParams(
       {apikey: config.OMDB_KEY,
-       s:"facebook"
-        })
+       s: `${inputText}`})
       )
     .then((response) => response.json())
     .then((data) => setSearchRes(data['Search'].map(elem => elem.Title)));
-  }, [])
+  }, [inputText])
   
 
   return (
