@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from 'react';
 import './App.css';
-import List from './components/List';
+import MovieList from './components/MovieList';
 import { config } from './config';
-// import { TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 
 function App() {
   const [inputText, setInputText] = useState("");
@@ -43,23 +43,16 @@ function App() {
   return (
     <div className="main">
       <div className='search'>
-        {/* <TextField id="standard-basic" 
+        <TextField id="standard-basic" 
                   onChange={inputHandler}
                   label="Standard" 
                   variant="standard" 
-        /> */}
-        <form>
-          <label>
-            Search
-            <input type="text" name="name" onChange={inputHandler}/>
-          </label>
-          <input type="submit" value="Submit"/>
-        </form>
+        />
       </div>
       {isLoading? (
         <div>Loading...</div>
       ) : (
-        <List input = {inputText} 
+        <MovieList input = {inputText} 
         titleList = {searchRes}/>
       )}
     </div>
