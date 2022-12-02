@@ -3,6 +3,7 @@ import './App.css';
 import MovieList from './components/MovieList';
 import { config } from './config';
 import { TextField } from '@mui/material';
+import  Container from '@mui/material/Container';
 
 function App() {
   const [inputText, setInputText] = useState("");
@@ -21,41 +22,35 @@ function App() {
                         {apikey: config.OMDB_KEY,
                         s: `${inputText}`}));
       const data = await res.json();
-      setSearchRes(data['Search'].map(elem => elem.Title));
-      setIsLoading(false);
+      if (data.hasOwnProperty('Search')){
+        setSearchRes(data['Search'].map(elem => elem.Title));
+        setIsLoading(false);
+      }
     };
     fetchMovies();
   }, [inputText])
-  //   fetch('http://www.omdbapi.com/?' + new URLSearchParams(
-  //     {apikey: config.OMDB_KEY,
-  //      s: `${inputText}`})
-  //     )
-  //   .then((response) => response.json())
-  //   .then((data) => setSearchRes(data['Search'].map(elem => elem.Title)));
-  // }, [inputText])
-  
-  // async function fetchMovies() {
-  //   const response = await fetch('/movies');
-  //   // waits until the request completes...
-  //   console.log(response);
-  // }
 
   return (
-    <div className="main">
-      <div className='search'>
-        <TextField id="standard-basic" 
-                  onChange={inputHandler}
-                  label="Standard" 
-                  variant="standard" 
-        />
+    <Container maxWidth="md">
+      <div className="main">
+          <div className='search'>
+            <TextField 
+                      fullWidth
+                      id="standard-basic" 
+                      onChange={inputHandler}
+                      label="Standard" 
+                      variant="outlined" 
+            />
+          </div>
+          {isLoading? (
+            <div>Loading...</div>
+          ) : (
+            <MovieList input = {inputText} 
+            titleList = {searchRes}/>
+          )}
       </div>
-      {isLoading? (
-        <div>Loading...</div>
-      ) : (
-        <MovieList input = {inputText} 
-        titleList = {searchRes}/>
-      )}
-    </div>
+    </Container>
+      
   );
 }
 
