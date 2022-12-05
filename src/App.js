@@ -2,8 +2,9 @@ import { React, useState, useEffect } from 'react';
 import './App.css';
 import MovieList from './components/MovieList';
 import { config } from './config';
-import { TextField } from '@mui/material';
+import { IconButton, TextField } from '@mui/material';
 import  Container from '@mui/material/Container';
+import ClearIcon from '@mui/icons-material/Clear';
 
 function App() {
   const [inputText, setInputText] = useState("");
@@ -32,16 +33,26 @@ function App() {
 
   return (
     <Container maxWidth="md">
-      <div className="main">
-          <div className='search'>
+      <div className="main"
+           style={{paddingTop: 30}}>
             <TextField 
                       fullWidth
                       id="standard-basic" 
+                      value = {inputText}
                       onChange={inputHandler}
-                      label="Standard" 
-                      variant="outlined" 
-            />
-          </div>
+                      label="Movie titles" 
+                      variant="outlined"
+                      InputProps={{
+                        endAdornment: inputText ? (
+                          <IconButton 
+                              size="small"
+                              onClick={() => setInputText("")}
+                              aria-label="clear">
+                              <ClearIcon/>
+                          </IconButton>
+                        ) : undefined
+                      }}
+            />           
           {isLoading? (
             <div>Loading...</div>
           ) : (

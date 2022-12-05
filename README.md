@@ -7,6 +7,14 @@
 - [ ] use material UI for better visual
 
 ## Reference
+Search Bar
 https://dev.to/salehmubashar/search-bar-in-react-js-545l
-https://devtrium.com/posts/async-functions-useeffect
+
+Data fetch
 https://www.robinwieruch.de/react-hooks-fetch-data/
+https://devtrium.com/posts/async-functions-useeffect
+
+
+UI
+Textfield clear button 
+https://github.com/mui/material-ui/issues/27630
