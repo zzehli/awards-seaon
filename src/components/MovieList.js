@@ -16,7 +16,7 @@ function MovieList(props) {
     //console.log(props.titleList)
 
     return (
-        <List>
+            <List>
             {props.titleList.map((item, index) => (
                 <ListItem 
                 key={index}>
@@ -26,7 +26,8 @@ function MovieList(props) {
                 </ListItem>
             ))}
            
-        </List>
+            </List>
+        
     )
 }
 

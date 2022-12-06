@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import './App.css';
 import MovieList from './components/MovieList';
 import { config } from './config';
-import { IconButton, TextField } from '@mui/material';
+import { IconButton, TextField, Box, Paper, Divider, Typography } from '@mui/material';
 import  Container from '@mui/material/Container';
 import ClearIcon from '@mui/icons-material/Clear';
 
@@ -33,8 +33,7 @@ function App() {
 
   return (
     <Container maxWidth="md">
-      <div className="main"
-           style={{paddingTop: 30}}>
+      <Box sx={{pt: 5, pb: 2}}>
             <TextField 
                       fullWidth
                       id="standard-basic" 
@@ -53,13 +52,20 @@ function App() {
                         ) : undefined
                       }}
             />           
-          {isLoading? (
+      </Box>
+      <Paper>
+        <Typography variant="h6" gutterBottom component="div" sx={{ p: 2, pb: 0 }}>
+          Search Results
+        </Typography>
+        <Divider />
+      
+      {isLoading? (
             <div>Loading...</div>
           ) : (
             <MovieList input = {inputText} 
             titleList = {searchRes}/>
           )}
-      </div>
+      </Paper>
     </Container>
       
   );
