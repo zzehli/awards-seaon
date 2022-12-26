@@ -1,12 +1,11 @@
 import { React, useState, useEffect } from 'react';
-import './App.css';
 import MovieList from './components/MovieList';
+import NominationList from './components/NominationList';
 import { config } from './config';
 import { IconButton, TextField, Box, Typography, ListItem, ListItemText } from '@mui/material';
 import  Container from '@mui/material/Container';
 import ClearIcon from '@mui/icons-material/Clear';
-import LaurelIcon from './assets/Laurel.png';
-import { borderRadius, flexbox } from '@mui/system';
+
 
 function App() {
   const [inputText, setInputText] = useState("");
@@ -19,27 +18,10 @@ function App() {
     setInputText(lowerCase);
   }
   const nominationHandler = (item) => {
-    setNominateList(prevList => [...prevList, {Title: item.Title, Year: item.Year}]);
+    setNominateList(prevList => [...prevList, {Title: item.Title, 
+                                              Year: item.Year,
+                                              imdbID: item.imdbID}]);
   }
-
-  const emptyNomination = (
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        sx={{height:300}}>
-        <img
-        src={LaurelIcon}
-        alt="Laurel"
-        width={100}
-        />
-        <Typography variant="subtitle1" sx={{pt: 2}}>
-          Your nominations will appear here.
-        </Typography>
-      </Box>
-
-  )
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -57,30 +39,16 @@ function App() {
 
   return (
     <Container maxWidth="md">
-        <Typography variant="subtitle1" gutterBottom component="div" sx={{pt: 2}}>
-        The Shoppies
+        <Typography variant="subtitle2" gutterBottom component="div" sx={{pt: 2}}>
+        The Shoppies:  Shopify 2021 Summer Internship Challenge
         </Typography>
-        <Typography variant="subtitle2" component="div">
-        Shopify 2021 Summer Internship Challenge
+
+        <Typography variant="h5" gutterBottom component="div">
+        Nomination List
         </Typography>
-        <h2>Nomination List</h2>
-        <Box       
-          sx ={{
-            border: 2,
-            borderRadius: 5,
-            height: 300,
-            pt: 3
-          }}>
+      
+        <NominationList nominateList = {nominateList} />
         
-        {       
-        nominateList.length === 0 ? (emptyNomination) : (
-        nominateList.map((item) => (
-          <ListItem key = {item} >
-            <ListItemText primary = {`${item.Title} (${item.Year})`}/>
-          </ListItem>
-        )))
-        }
-        </Box>
         <Box sx={{pt: 5, pb: 2}}>
               <TextField 
                         fullWidth
