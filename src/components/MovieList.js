@@ -15,10 +15,12 @@ function MovieList(props) {
         </Typography>
         <Divider />
         <List>
-            {props.titleList.map((item, index) => (
+            {props.titleList.map((item) => (
                 <ListItem 
-                key={index}>
-                    <ListItemButton component="a" href="#simple-list">
+                key={item.imdbID}>
+                    <ListItemButton component="a" 
+                                    onClick={() => {props.nominationHandler(item)}}
+                                    >
                         <ListItemText primary = {`${item.Title} (${item.Year})`}/>
                     </ListItemButton>
                 </ListItem>
