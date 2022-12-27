@@ -1,10 +1,9 @@
 import { React } from "react";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { Paper, Divider, Typography } from '@mui/material';
-
+import { Paper, Divider, Typography, IconButton } from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function MovieList(props) {
 
@@ -17,12 +16,21 @@ function MovieList(props) {
         <List>
             {props.titleList.map((item) => (
                 <ListItem 
-                key={item.imdbID}>
-                    <ListItemButton component="a" 
-                                    onClick={() => {props.nominationHandler(item)}}
-                                    >
-                        <ListItemText primary = {`${item.Title} (${item.Year})`}/>
-                    </ListItemButton>
+                key={item.imdbID}
+                secondaryAction={
+                    <IconButton edge="end" aria-label="add"
+                                onClick={() => {props.nominationHandler(item)}}
+                                disabled={
+                                    props.nominationList.length > 4 ||
+                                    props.nominationList.some( one => one.imdbID === item.imdbID)
+                                  }
+                    >
+                        <AddCircleIcon
+                                        sx={{ fontSize: 30 }}/>
+                    </IconButton>
+                }>
+
+                    <ListItemText primary = {`${item.Title} (${item.Year})`}/>
                 </ListItem>
             ))}
            

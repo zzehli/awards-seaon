@@ -2,6 +2,7 @@ import React from 'react'
 import LaurelIcon from '../assets/Laurel.png';
 import { Box, Typography, ListItem, ListItemText, Button, IconButton } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { generateNominationURL } from '../util';
 
 const NominationCard = (props) => {
 
@@ -24,6 +25,12 @@ const NominationCard = (props) => {
 
     )
 
+    /* https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */
+    const copyNominationURL = (nominations) => {
+        let url = generateNominationURL(nominations);
+        navigator.clipboard.writeText(url);
+    }
+
     return (
         <Box>
             <Box       
@@ -40,7 +47,7 @@ const NominationCard = (props) => {
                                 secondaryAction={
                                     <IconButton edge="end" aria-label="add"
                                                 onClick={() => {props.nominationRemove(item.imdbID)}}>
-                                        <RemoveCircleIcon color='primary'  
+                                        <RemoveCircleIcon
                                                             sx={{ fontSize: 30 }}/>
                                     </IconButton>
                                 }>
@@ -53,6 +60,7 @@ const NominationCard = (props) => {
                 sx = {{
                     display: 'flex',
                     justifyContent: 'flex-end',
+                    gap: 2,
                     pt: 2
                 }}>
                 <Button 
@@ -60,6 +68,12 @@ const NominationCard = (props) => {
                     onClick={props.nominationClearHandler}
                     disabled={props.nominateList.length === 0}>
                         Clear Nominations</Button>
+                <Button
+                    variant="contained"
+                    onClick={() => copyNominationURL(props.nominateList)}
+                    disabled={props.nominateList.length === 0}>
+                        Export To URL
+                    </Button>
             </Box>
         </Box>
    

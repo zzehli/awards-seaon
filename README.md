@@ -3,10 +3,10 @@
 - [x] search bar with instant feedback, hard-coded data
 - [x] use `fetch` api to fetch a list of movies from API
 - [x] connect input with api to fetch data according to input
-- [ ] add butons on result list and remove buttons on nomination list
+- [x] add butons on result list and remove buttons on nomination list
 - [ ] nomination handling: query string for information retrieval
-- [ ] apply color to the page: border, box background
-- [ ] use material UI for better visual
+- [x] apply color to the page: border, box background
+- [x] use material UI for better visual
 
 ## Reference
 Search Bar

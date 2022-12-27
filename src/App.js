@@ -78,7 +78,8 @@ function App() {
         { isResDiv && (
         <MovieList input = {inputText} 
         titleList = {searchRes}
-        nominationHandler = {nominationHandler}/>
+        nominationHandler = {nominationHandler}
+        nominationList = {nominateList}/>
         )}
 
     </Container>
