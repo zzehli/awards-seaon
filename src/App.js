@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from 'react';
 import MovieList from './components/MovieList';
-import NominationList from './components/NominationList';
+import NominationCard from './components/NominationCard';
 import { config } from './config';
-import { IconButton, TextField, Box, Typography, ListItem, ListItemText } from '@mui/material';
+import { IconButton, TextField, Box, Typography} from '@mui/material';
 import  Container from '@mui/material/Container';
 import ClearIcon from '@mui/icons-material/Clear';
 
@@ -17,10 +17,15 @@ function App() {
     var lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
   }
+  
   const nominationHandler = (item) => {
     setNominateList(prevList => [...prevList, {Title: item.Title, 
                                               Year: item.Year,
                                               imdbID: item.imdbID}]);
+  }
+
+  const nominationRemove = (id) => {
+    setNominateList(prevList => prevList.filter(item => id !== item.imdbID))
   }
 
   useEffect(() => {
@@ -42,20 +47,19 @@ function App() {
         <Typography variant="subtitle2" gutterBottom component="div" sx={{pt: 2}}>
         The Shoppies:  Shopify 2021 Summer Internship Challenge
         </Typography>
-
-        <Typography variant="h5" gutterBottom component="div">
-        Nomination List
-        </Typography>
       
-        <NominationList nominateList = {nominateList} />
-        
+        <NominationCard nominateList = {nominateList}
+                        nominationClearHandler = {() => {setNominateList([])}}
+                        nominationRemove = {nominationRemove}
+                        />
+
         <Box sx={{pt: 5, pb: 2}}>
               <TextField 
                         fullWidth
                         id="standard-basic" 
                         value = {inputText}
                         onChange={inputHandler}
-                        label="Search movie titles" 
+                        label="Search Movie Titles" 
                         variant="outlined"
                         InputProps={{
                           endAdornment: inputText ? (
