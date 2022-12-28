@@ -34,7 +34,6 @@ function App() {
       const res = await fetch('http://www.omdbapi.com/?' + new URLSearchParams(
                         {apikey: config.OMDB_KEY,
                         s: `${inputText}`}));
-      // console.log(typeof res)
       const data = await res.json();
       if (data.hasOwnProperty('Search')){
         setSearchRes(data['Search'].map(elem => ({Title: elem.Title, Year: elem.Year, imdbID: elem.imdbID})));
@@ -50,7 +49,6 @@ function App() {
           window.history.replaceState(null, "", window.location.pathname);
 
           async function fetchGroup() {
-          console.log(queryParams)
            // https://stackoverflow.com/questions/50006595/using-promise-all-to-fetch-a-list-of-urls-with-await-statements
             let urls = queryParams.map((query) => {
               let param =  new URLSearchParams({apikey: config.OMDB_KEY,
@@ -74,17 +72,12 @@ function App() {
           fetchGroup();
         
       }, [])
-
-      useEffect(() => {
-        console.log('nominate', nominateList)
-      }, [nominateList])
-
       
 
   return (
     <Container maxWidth="md">
-        <Typography variant="subtitle2" gutterBottom component="div" sx={{pt: 2}}>
-        The Shoppies:  Shopify 2021 Summer Internship Challenge
+        <Typography variant="subtitle2" gutterBottom component="div" sx={{pt: 2, pb:1}}>
+        Nominate your favorite movies        
         </Typography>
       
         <NominationCard nominateList = {nominateList}
@@ -109,8 +102,9 @@ function App() {
                                 aria-label="clear">
                                 <ClearIcon/>
                             </IconButton>
-                          ) : undefined
-                        }}
+                          ) : undefined}}
+                         
+
               />           
         </Box>
 

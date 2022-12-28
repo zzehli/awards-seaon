@@ -4,7 +4,7 @@
 - [x] use `fetch` api to fetch a list of movies from API
 - [x] connect input with api to fetch data according to input
 - [x] add butons on result list and remove buttons on nomination list
-- [ ] nomination handling: query string for information retrieval
+- [x] nomination handling: query string for information retrieval
 - [x] apply color to the page: border, box background
 - [x] use material UI for better visual
 

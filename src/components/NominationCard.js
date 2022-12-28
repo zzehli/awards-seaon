@@ -75,7 +75,8 @@ const NominationCard = (props) => {
             boxShadow: 3,
             borderRadius: 5,
             height: 300,
-            pt: 3
+            pt: 3,
+            backgroundColor: 'background.paper'
             }}>
                 {       
                 props.nominateList.length === 0 ? (emptyNomination) : (
