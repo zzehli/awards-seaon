@@ -77,7 +77,7 @@ function App() {
   return (
     <Container maxWidth="md">
         <Typography variant="subtitle2" gutterBottom component="div" sx={{pt: 2, pb:1}}>
-        Nominate your favorite movies        
+        Nominate Your Favorite Movies        
         </Typography>
       
         <NominationCard nominateList = {nominateList}
