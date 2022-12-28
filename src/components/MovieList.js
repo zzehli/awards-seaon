@@ -1,47 +1,12 @@
-import { React, useState } from "react";
+import { React } from "react";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { Paper, Divider, Typography, IconButton, ListItemButton } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import MovieDetail from "./MovieDetail";
-import { config } from '../config';
-
 
 function MovieList(props) {
-    const [openDetail, setOpenDetail] = useState(false);
-    const [detail, setDetail] = useState([]);
-    
-    const handleCloseDetail = () => {
-        setOpenDetail(false);
-    }
-    // https://bobbyhadz.com/blog/react-fetch-data-on-button-click
-    const fetchMovie = async (id) => {
-        try{
-            
-            const res = await fetch('https://www.omdbapi.com/?' + new URLSearchParams(
-                                                            {apikey: config.OMDB_KEY,
-                                                            i: `${id}`,
-                                                            plot: 'full'}));
-                const data = await res.json();
-                if (data.hasOwnProperty('Title')){
-                setDetail({title: data.Title,
-                            year: data.Year,
-                            runtime: data.Runtime,
-                            director: data.Director,
-                            actors: data.Actors,
-                            plot: data.Plot,
-                            poster: data.Poster,
-                            id: data.imdbID})
-                }
-                setOpenDetail(true);
-    
-          } catch (err) {
-            console.log(err)
-          }
-    }
-   
-
     return (
         <Paper>
         <Typography variant="h6" gutterBottom component="div" sx={{ p: 2, pb: 0 }}>
@@ -62,17 +27,16 @@ function MovieList(props) {
                         <AddCircleIcon sx={{ fontSize: 30 }}/>
                     </IconButton>
                 }>
-                    <ListItemButton onClick={() => fetchMovie(item.imdbID)}>
+                    <ListItemButton onClick={() => props.fetchDetail(item.imdbID)}>
                         <ListItemText primary = {`${item.Title} (${item.Year})`}/>
                     </ListItemButton>
                 </ListItem>
             ))}
            
         </List>
-        {Object.keys(detail).length !== 0 && <MovieDetail open={openDetail} 
-                                                    handleClose={handleCloseDetail}
-                                                    detail={detail}
-                                                    nominate={props.nominationHandler}/>}
+        {Object.keys(props.detail).length !== 0 && <MovieDetail open={props.openDetail} 
+                                                    handleClose={props.handleCloseDetail}
+                                                    detail={props.detail}/>}
         </Paper> 
     )
 }

@@ -13,6 +13,8 @@ function App() {
   const [searchRes, setSearchRes] = useState([]);
   const [isResDiv, setResDiv] = useState(false) ;
   const [nominateList, setNominateList] = useState([]);
+  const [detail, setDetail] = useState({})
+  const [openDetail, setOpenDetail] = useState(false);
 
   const inputHandler = (e) => {
     var lowerCase = e.target.value.toLowerCase();
@@ -74,7 +76,36 @@ function App() {
           fetchGroup();
         
       }, [])
-      
+
+   // https://bobbyhadz.com/blog/react-fetch-data-on-button-click
+   const fetchDetail = async (id) => {
+    try{
+        
+        const res = await fetch('https://www.omdbapi.com/?' + new URLSearchParams(
+                                                        {apikey: config.OMDB_KEY,
+                                                        i: `${id}`,
+                                                        plot: 'full'}));
+            const data = await res.json();
+            if (data.hasOwnProperty('Title')){
+            setDetail({title: data.Title,
+                        year: data.Year,
+                        runtime: data.Runtime,
+                        director: data.Director,
+                        actors: data.Actors,
+                        plot: data.Plot,
+                        poster: data.Poster,
+                        id: data.imdbID})
+            }
+            setOpenDetail(true);
+
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    const handleCloseDetail = () => {
+      setOpenDetail(false);
+    }
+
 
   return (
     <Container maxWidth="md">
@@ -85,6 +116,11 @@ function App() {
         <NominationCard nominateList = {nominateList}
                         nominationClearHandler = {() => {setNominateList([])}}
                         nominationRemove = {nominationRemove}
+                        fetchDetail = {fetchDetail}
+                        handleCloseDetail = {handleCloseDetail}
+                        openDetail = {openDetail}
+                        detail = {detail}
+
                         />
 
         <Box sx={{pt: 5, pb: 2}}>
@@ -117,7 +153,12 @@ function App() {
         <MovieList input = {inputText} 
         titleList = {searchRes}
         nominationHandler = {nominationHandler}
-        nominationList = {nominateList}/>
+        nominationList = {nominateList}
+        fetchDetail = {fetchDetail}
+        handleCloseDetail = {handleCloseDetail}
+        openDetail = {openDetail}
+        detail = {detail}
+        />
         )}
 
     </Container>

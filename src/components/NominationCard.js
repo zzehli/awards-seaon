@@ -1,13 +1,16 @@
 import React from 'react'
 import LaurelIcon from '../assets/Laurel.png';
-import { Box, Typography, ListItem, ListItemText, Button, IconButton, Snackbar } from '@mui/material';
+import { Box, Typography, ListItem, ListItemText, ListItemButton, Button, IconButton, Snackbar } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { generateNominationURL } from '../util';
 import CloseIcon from '@mui/icons-material/Close';
+import MovieDetail from "./MovieDetail";
+
 
 const NominationCard = (props) => {
     const [open, setOpen] = React.useState(false);
     const [copy, setCopy] = React.useState(false);
+    
 
     const handleClick = () => {
         setOpen(true);
@@ -34,7 +37,6 @@ const NominationCard = (props) => {
 
     /* https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */
     // https://web.dev/async-clipboard/
-
     async function copyNominationURL(nominations) {
         let url = generateNominationURL(nominations);
         try {
@@ -89,7 +91,9 @@ const NominationCard = (props) => {
                                                             sx={{ fontSize: 30 }}/>
                                     </IconButton>
                                 }>
-                        <ListItemText primary = {`${item.Title} (${item.Year})`}/>
+                        <ListItemButton onClick={() => props.fetchDetail(item.imdbID)}>
+                            <ListItemText primary = {`${item.Title} (${item.Year})`}/>
+                        </ListItemButton>
                     </ListItem>
                 )))
                 }
@@ -120,6 +124,9 @@ const NominationCard = (props) => {
                     message={copy? "URL copied to clipboard": "URL copy failed"}
                     />
             </Box>
+            {Object.keys(props.detail).length !== 0 && <MovieDetail open={props.openDetail} 
+                                                    handleClose={props.handleCloseDetail}
+                                                    detail={props.detail}/>}
         </Box>
    
         
