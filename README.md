@@ -16,7 +16,9 @@ Data fetch
 https://www.robinwieruch.de/react-hooks-fetch-data/
 https://devtrium.com/posts/async-functions-useeffect
 
-
 UI
 Textfield clear button 
 https://github.com/mui/material-ui/issues/27630
+
+How to render based on search params?
+https://beta.reactjs.org/learn/keeping-components-pure

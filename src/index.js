@@ -5,8 +5,11 @@ import { CssBaseline } from '@mui/material';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.Fragment>
-        <CssBaseline/>
-        <App/>
-    </React.Fragment>
+    <React.StrictMode>
+        <React.Fragment>
+            <CssBaseline/>
+            <App/>
+        </React.Fragment>  
+    </React.StrictMode>
+
 );

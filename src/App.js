@@ -5,6 +5,7 @@ import { config } from './config';
 import { IconButton, TextField, Box, Typography} from '@mui/material';
 import  Container from '@mui/material/Container';
 import ClearIcon from '@mui/icons-material/Clear';
+import { getQueryParam } from './util';
 
 
 function App() {
@@ -41,6 +42,55 @@ function App() {
     };
     fetchMovies();
   }, [inputText])
+
+  useEffect(() => {
+        if (window.location.search) {
+          let group = [];
+          async function fetchGroup() {
+            const queryParams = getQueryParam();
+            window.history.replaceState(null, "", window.location.pathname);
+
+          //   await Promise.all(queryParams.map(async (query) => {
+          //     const res = await fetch('http://www.omdbapi.com/?' + new URLSearchParams(
+          //       {apikey: config.OMDB_KEY,
+          //       i: `${query}`}));
+          //     const data = await res.json();
+          //     group.push({Title: data['Title'], 
+          //                   Year: data['Year'],
+          //                   imdbID: data['imdbID']});
+    
+          //   }))
+          // };
+          // fetchGroup();
+          
+
+          // console.log('group', group);
+          // setNominateList(group);
+          // https://stackoverflow.com/questions/50006595/using-promise-all-to-fetch-a-list-of-urls-with-await-statements
+          console.log(queryParams)
+          try{
+            const res = await Promise.all(queryParams.map((query) => {
+              fetch('http://www.omdbapi.com/?' + new URLSearchParams(
+                                          {apikey: config.OMDB_KEY,
+                                          i: `${query}`}))}));
+            // console.log(res)
+            const data = await Promise.all(res.map(one => one.json()));
+            for (let item of data) {
+              console.log(item);
+            }
+          } catch (err) {
+            console.log(err)
+          }
+          }
+          fetchGroup();
+        }
+      }, [])
+
+      useEffect(() => {
+        console.log('nominate', nominateList)
+      }, [nominateList])
+
+      
 
   return (
     <Container maxWidth="md">

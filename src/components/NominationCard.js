@@ -1,10 +1,17 @@
 import React from 'react'
 import LaurelIcon from '../assets/Laurel.png';
-import { Box, Typography, ListItem, ListItemText, Button, IconButton } from '@mui/material';
+import { Box, Typography, ListItem, ListItemText, Button, IconButton, Snackbar } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { generateNominationURL } from '../util';
+import CloseIcon from '@mui/icons-material/Close';
 
 const NominationCard = (props) => {
+    const [open, setOpen] = React.useState(false);
+    const [copy, setCopy] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+      };
 
     const emptyNomination = (
         <Box
@@ -26,10 +33,40 @@ const NominationCard = (props) => {
     )
 
     /* https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */
-    const copyNominationURL = (nominations) => {
+    // https://web.dev/async-clipboard/
+
+    async function copyNominationURL(nominations) {
         let url = generateNominationURL(nominations);
-        navigator.clipboard.writeText(url);
+        try {
+            await navigator.clipboard.writeText(url);
+            setCopy(true);
+        } catch (e) {
+            console.error("failed", e);
+            setCopy(false);
+        }
+        handleClick();
     }
+
+
+
+    const handleClose = () => {
+        setOpen(false);
+    }
+    
+    const action = (
+        <React.Fragment>
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleClose}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </React.Fragment>
+      );
+
+
 
     return (
         <Box>
@@ -73,7 +110,14 @@ const NominationCard = (props) => {
                     onClick={() => copyNominationURL(props.nominateList)}
                     disabled={props.nominateList.length === 0}>
                         Export To URL
-                    </Button>
+                </Button>
+                <Snackbar
+                    action={action}
+                    open={open}
+                    autoHideDuration={4000}
+                    onClose={handleClose}
+                    message={copy? "URL copied to clipboard": "URL copy failed"}
+                    />
             </Box>
         </Box>
    
