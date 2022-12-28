@@ -62,7 +62,7 @@ export default function MovieDetail(props) {
           {`${props.detail.title}, ${props.detail.year}`}
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <Box display={{md: 'flex'}}
+          <Box display={{sm: 'flex'}}
                gap={2}>
             <Box
               component="img"
