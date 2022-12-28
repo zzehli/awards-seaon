@@ -22,7 +22,7 @@ const NominationCard = (props) => {
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            sx={{height:300}}>
+            sx={{height:350}}>
             <img
             src={LaurelIcon}
             alt="Laurel"
@@ -76,8 +76,8 @@ const NominationCard = (props) => {
             sx ={{
             boxShadow: 3,
             borderRadius: 5,
-            height: 300,
-            pt: 3,
+            height: 350,
+            pt: 1,
             backgroundColor: 'background.paper'
             }}>
                 {       
