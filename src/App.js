@@ -34,6 +34,7 @@ function App() {
       const res = await fetch('http://www.omdbapi.com/?' + new URLSearchParams(
                         {apikey: config.OMDB_KEY,
                         s: `${inputText}`}));
+      // console.log(typeof res)
       const data = await res.json();
       if (data.hasOwnProperty('Search')){
         setSearchRes(data['Search'].map(elem => ({Title: elem.Title, Year: elem.Year, imdbID: elem.imdbID})));
@@ -44,46 +45,34 @@ function App() {
   }, [inputText])
 
   useEffect(() => {
-        if (window.location.search) {
-          let group = [];
+          const queryParams = getQueryParam();
+
+          window.history.replaceState(null, "", window.location.pathname);
+
           async function fetchGroup() {
-            const queryParams = getQueryParam();
-            window.history.replaceState(null, "", window.location.pathname);
-
-          //   await Promise.all(queryParams.map(async (query) => {
-          //     const res = await fetch('http://www.omdbapi.com/?' + new URLSearchParams(
-          //       {apikey: config.OMDB_KEY,
-          //       i: `${query}`}));
-          //     const data = await res.json();
-          //     group.push({Title: data['Title'], 
-          //                   Year: data['Year'],
-          //                   imdbID: data['imdbID']});
-    
-          //   }))
-          // };
-          // fetchGroup();
-          
-
-          // console.log('group', group);
-          // setNominateList(group);
-          // https://stackoverflow.com/questions/50006595/using-promise-all-to-fetch-a-list-of-urls-with-await-statements
           console.log(queryParams)
-          try{
-            const res = await Promise.all(queryParams.map((query) => {
-              fetch('http://www.omdbapi.com/?' + new URLSearchParams(
-                                          {apikey: config.OMDB_KEY,
-                                          i: `${query}`}))}));
-            // console.log(res)
-            const data = await Promise.all(res.map(one => one.json()));
-            for (let item of data) {
-              console.log(item);
+           // https://stackoverflow.com/questions/50006595/using-promise-all-to-fetch-a-list-of-urls-with-await-statements
+            let urls = queryParams.map((query) => {
+              let param =  new URLSearchParams({apikey: config.OMDB_KEY,
+                                                i: `${query}`}).toString()
+              return 'http://www.omdbapi.com/?' + param
+            });
+            try{
+              const res = await Promise.all(urls.map(url => fetch(url)));
+              const data = await Promise.all(res.map(dt => dt.json()));
+              setNominateList(
+                data.map((item) => ({Title: item['Title'], 
+                                    Year: item['Year'],
+                                    imdbID: item['imdbID']})
+                        )
+              )
+            } catch (err) {
+              console.log(err)
             }
-          } catch (err) {
-            console.log(err)
           }
-          }
+
           fetchGroup();
-        }
+        
       }, [])
 
       useEffect(() => {
