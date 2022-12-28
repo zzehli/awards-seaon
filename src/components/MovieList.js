@@ -1,4 +1,4 @@
-import { React, useCallback, useState } from "react";
+import { React, useState } from "react";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -19,14 +19,12 @@ function MovieList(props) {
     const fetchMovie = async (id) => {
         try{
             
-            const res = await fetch('http://www.omdbapi.com/?' + new URLSearchParams(
+            const res = await fetch('https://www.omdbapi.com/?' + new URLSearchParams(
                                                             {apikey: config.OMDB_KEY,
                                                             i: `${id}`,
                                                             plot: 'full'}));
                 const data = await res.json();
                 if (data.hasOwnProperty('Title')){
-                //setSearchRes(data['Search'].map(elem => ({Title: elem.Title, Year: elem.Year, imdbID: elem.imdbID})));
-                //setResDiv(true);
                 setDetail({title: data.Title,
                             year: data.Year,
                             runtime: data.Runtime,

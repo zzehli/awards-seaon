@@ -20,9 +20,11 @@ function App() {
   }
   
   const nominationHandler = (item) => {
-    setNominateList(prevList => [...prevList, {Title: item.Title, 
-                                              Year: item.Year,
-                                              imdbID: item.imdbID}]);
+    if (!(nominateList.some(elem => elem.imdbID === item.imdbID))){
+      setNominateList(prevList => [...prevList, {Title: item.Title, 
+        Year: item.Year,
+        imdbID: item.imdbID}]);
+    }
   }
 
   const nominationRemove = (id) => {
