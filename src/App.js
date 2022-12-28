@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const res = await fetch('http://www.omdbapi.com/?' + new URLSearchParams(
+      const res = await fetch('https://www.omdbapi.com/?' + new URLSearchParams(
                         {apikey: config.OMDB_KEY,
                         s: `${inputText}`}));
       const data = await res.json();
@@ -53,7 +53,7 @@ function App() {
             let urls = queryParams.map((query) => {
               let param =  new URLSearchParams({apikey: config.OMDB_KEY,
                                                 i: `${query}`}).toString()
-              return 'http://www.omdbapi.com/?' + param
+              return 'https://www.omdbapi.com/?' + param
             });
             try{
               const res = await Promise.all(urls.map(url => fetch(url)));
