@@ -93,6 +93,9 @@ function App() {
                         onChange={inputHandler}
                         label="Search Movie Titles" 
                         variant="outlined"
+                        sx={{
+                          bgcolor: 'background.paper'
+                        }}
                         InputProps={{
                           endAdornment: inputText ? (
                             <IconButton 
