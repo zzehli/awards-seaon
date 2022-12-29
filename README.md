@@ -9,6 +9,7 @@
 - [x] use material UI for better visual
 - [x] footer with author
 - [x] header with git repo link
+- [x] remove fixed witdth nomination card in small screen
 
 ## Reference
 Search Bar

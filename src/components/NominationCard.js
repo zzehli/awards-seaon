@@ -76,7 +76,7 @@ const NominationCard = (props) => {
             sx ={{
             boxShadow: 3,
             borderRadius: 5,
-            height: 350,
+            height: {md: 350, sm: 'auto'},
             pt: 1,
             backgroundColor: 'background.paper'
             }}>
