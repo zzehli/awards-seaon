@@ -2,10 +2,11 @@ import { React, useState, useEffect } from 'react';
 import MovieList from './components/MovieList';
 import NominationCard from './components/NominationCard';
 import { config } from './config';
-import { IconButton, TextField, Box, Typography} from '@mui/material';
+import { Button, IconButton, TextField, Box, Typography, Link} from '@mui/material';
 import  Container from '@mui/material/Container';
 import ClearIcon from '@mui/icons-material/Clear';
 import { getQueryParam } from './util';
+import LinkIcon from '@mui/icons-material/Link';
 
 
 function App() {
@@ -109,9 +110,20 @@ function App() {
 
   return (
     <Container maxWidth="md">
-        <Typography variant="subtitle2" gutterBottom component="div" sx={{pt: 2, pb:1}}>
-        Nominate Your Favorite Movies        
-        </Typography>
+        <Box display='flex' justifyContent='space-between'>
+          <Typography variant="subtitle1" gutterBottom component="div" sx={{pt: 2, pb:1}}>
+            <strong>Nominate Your Favorite Movies</strong>       
+          </Typography>
+          <Button size='small' 
+                  endIcon={<LinkIcon/>} 
+                  href="https://github.com/zzehli/awards-seaon" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  sx={{margin: 2}}>
+            Github Repository
+          </Button>
+        </Box>
+
       
         <NominationCard nominateList = {nominateList}
                         nominationClearHandler = {() => {setNominateList([])}}
@@ -160,6 +172,9 @@ function App() {
         detail = {detail}
         />
         )}
+        <Typography variant='body2' sx={{position: 'absolute', bottom: 1}}>
+        Made by <Link href="https://jaeli.me/">Jae Li</Link>
+        </Typography>
 
     </Container>
       

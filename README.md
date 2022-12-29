@@ -7,6 +7,8 @@
 - [x] nomination handling: query string for information retrieval
 - [x] apply color to the page: border, box background
 - [x] use material UI for better visual
+- [x] footer with author
+- [x] header with git repo link
 
 ## Reference
 Search Bar
