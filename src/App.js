@@ -112,29 +112,30 @@ function App() {
   return (
     <Container maxWidth="md">
         <Box display='flex' justifyContent='space-between' sx={{pt: 2, pb:1}}>
-        {/* {{sm: 'flex'}} */}
           <Typography variant= "subtitle1" component="div">
             <strong>Nominate Your Favorite Movies</strong>       
           </Typography>
           <Box>
-            <Button size='small' 
-                    endIcon={<LinkIcon/>} 
-                    href="https://github.com/zzehli/awards-seaon" 
-                    target="_blank" 
-                    rel="noreferrer"
-                 
-                    >
-              Github Repository
-            </Button>
-            <Button size='small' 
-                    endIcon={<BuildCircleIcon/>} 
-                    href="https://jaeli.me/" 
-                    target="_blank" 
-                    rel="noreferrer"
-                    
-                    >
-              Jae Li
-            </Button>
+              <Button 
+                      sx={{display: {xs: 'none', sm: 'inline-flex'}}}
+                      size='small' 
+                      endIcon={<LinkIcon/>} 
+                      href="https://github.com/zzehli/awards-seaon" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      >
+                Github Repository
+              </Button>
+              <Button 
+                      size='small' 
+                      endIcon={<BuildCircleIcon/>} 
+                      href="https://jaeli.me/" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      
+                      >
+                Jae Li
+              </Button>
           {/* <Typography variant='body2' sx={{display: 'inline-block', alignSelf: 'flex-end'}}>
              Made by <Link href="https://jaeli.me/" target="_blank" rel="noreferrer">Jae Li</Link>
           </Typography> */}
