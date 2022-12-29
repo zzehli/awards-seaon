@@ -1,7 +1,7 @@
 # Award Season 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8acf6ce7-1967-451e-898e-087ecb9d0177/deploy-status)](https://app.netlify.com/sites/award-nominations/deploys)
 
-This project is [live](award-nominations.netlify.app)!
+This project is [live](https://award-nominations.netlify.app/)!
 
 ## Introduction
 This web application allows you to look up movies from the Open Movie Database and
