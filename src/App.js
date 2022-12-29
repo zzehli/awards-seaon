@@ -118,7 +118,7 @@ function App() {
                   endIcon={<LinkIcon/>} 
                   href="https://github.com/zzehli/awards-seaon" 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel="noreferrer"
                   sx={{margin: 2}}>
             Github Repository
           </Button>
@@ -173,7 +173,7 @@ function App() {
         />
         )}
         <Typography variant='body2' sx={{position: 'absolute', bottom: 1}}>
-        Made by <Link href="https://jaeli.me/">Jae Li</Link>
+        Made by <Link href="https://jaeli.me/" target="_blank" rel="noreferrer">Jae Li</Link>
         </Typography>
 
     </Container>
