@@ -111,8 +111,9 @@ function App() {
 
   return (
     <Container maxWidth="md">
-        <Box display='flex' justifyContent='space-between'>
-          <Typography variant="subtitle1" gutterBottom component="div" sx={{pt: 2, pb:1}}>
+        <Box display='flex' justifyContent='space-between' sx={{pt: 2, pb:1}}>
+        {/* {{sm: 'flex'}} */}
+          <Typography variant= "subtitle1" component="div">
             <strong>Nominate Your Favorite Movies</strong>       
           </Typography>
           <Box>
@@ -121,7 +122,8 @@ function App() {
                     href="https://github.com/zzehli/awards-seaon" 
                     target="_blank" 
                     rel="noreferrer"
-                    sx={{padding: 1, margin: 1}}>
+                 
+                    >
               Github Repository
             </Button>
             <Button size='small' 
@@ -129,7 +131,8 @@ function App() {
                     href="https://jaeli.me/" 
                     target="_blank" 
                     rel="noreferrer"
-                    sx={{padding: 1, margin: 1}}>
+                    
+                    >
               Jae Li
             </Button>
           {/* <Typography variant='body2' sx={{display: 'inline-block', alignSelf: 'flex-end'}}>
