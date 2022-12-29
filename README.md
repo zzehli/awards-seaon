@@ -1,15 +1,14 @@
-## Fetch data from OMDB API
-## TODO
-- [x] search bar with instant feedback, hard-coded data
-- [x] use `fetch` api to fetch a list of movies from API
-- [x] connect input with api to fetch data according to input
-- [x] add butons on result list and remove buttons on nomination list
-- [x] nomination handling: query string for information retrieval
-- [x] apply color to the page: border, box background
-- [x] use material UI for better visual
-- [x] footer with author
-- [x] header with git repo link
-- [x] remove fixed witdth nomination card in small screen
+# Award Season 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8acf6ce7-1967-451e-898e-087ecb9d0177/deploy-status)](https://app.netlify.com/sites/award-nominations/deploys)
+
+This project is [live](award-nominations.netlify.app)!
+
+## Introduction
+This web application allows you to look up movies from the Open Movie Database and
+nominate movies for awards. You can export and view the list of nominations via URLs. This site is a single page application built with React and Material UI. This project is based on Shopify's fontend internship challenge.
+
+Some of the technical challenges in this project include handling query parameters as a means of export and retrieve movies, making reusable component that can be used in multiple parts of the interface, designing where the states locate across multiple components.
+
 
 ## Reference
 Search Bar
@@ -19,9 +18,6 @@ Data fetch
 https://www.robinwieruch.de/react-hooks-fetch-data/
 https://devtrium.com/posts/async-functions-useeffect
 
-UI
 Textfield clear button 
 https://github.com/mui/material-ui/issues/27630
 
-How to render based on search params?
-https://beta.reactjs.org/learn/keeping-components-pure

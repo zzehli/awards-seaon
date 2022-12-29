@@ -117,16 +117,16 @@ function App() {
           </Typography>
           <Box>
               <Button 
-                      sx={{display: {xs: 'none', sm: 'inline-flex'}}}
                       size='small' 
                       endIcon={<LinkIcon/>} 
                       href="https://github.com/zzehli/awards-seaon" 
                       target="_blank" 
                       rel="noreferrer"
                       >
-                Github Repository
+                Codebase
               </Button>
               <Button 
+                      sx={{display: {xs: 'none', sm: 'inline-flex'}}}                      
                       size='small' 
                       endIcon={<BuildCircleIcon/>} 
                       href="https://jaeli.me/" 
@@ -136,9 +136,6 @@ function App() {
                       >
                 Jae Li
               </Button>
-          {/* <Typography variant='body2' sx={{display: 'inline-block', alignSelf: 'flex-end'}}>
-             Made by <Link href="https://jaeli.me/" target="_blank" rel="noreferrer">Jae Li</Link>
-          </Typography> */}
           </Box>
          
         </Box>
