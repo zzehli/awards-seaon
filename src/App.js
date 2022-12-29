@@ -2,11 +2,12 @@ import { React, useState, useEffect } from 'react';
 import MovieList from './components/MovieList';
 import NominationCard from './components/NominationCard';
 import { config } from './config';
-import { Button, IconButton, TextField, Box, Typography, Link} from '@mui/material';
+import { Button, IconButton, TextField, Box, Typography} from '@mui/material';
 import  Container from '@mui/material/Container';
 import ClearIcon from '@mui/icons-material/Clear';
 import { getQueryParam } from './util';
 import LinkIcon from '@mui/icons-material/Link';
+import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 
 
 function App() {
@@ -114,14 +115,28 @@ function App() {
           <Typography variant="subtitle1" gutterBottom component="div" sx={{pt: 2, pb:1}}>
             <strong>Nominate Your Favorite Movies</strong>       
           </Typography>
-          <Button size='small' 
-                  endIcon={<LinkIcon/>} 
-                  href="https://github.com/zzehli/awards-seaon" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  sx={{margin: 2}}>
-            Github Repository
-          </Button>
+          <Box>
+            <Button size='small' 
+                    endIcon={<LinkIcon/>} 
+                    href="https://github.com/zzehli/awards-seaon" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    sx={{padding: 1, margin: 1}}>
+              Github Repository
+            </Button>
+            <Button size='small' 
+                    endIcon={<BuildCircleIcon/>} 
+                    href="https://jaeli.me/" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    sx={{padding: 1, margin: 1}}>
+              Jae Li
+            </Button>
+          {/* <Typography variant='body2' sx={{display: 'inline-block', alignSelf: 'flex-end'}}>
+             Made by <Link href="https://jaeli.me/" target="_blank" rel="noreferrer">Jae Li</Link>
+          </Typography> */}
+          </Box>
+         
         </Box>
 
       
@@ -172,10 +187,6 @@ function App() {
         detail = {detail}
         />
         )}
-        <Typography variant='body2' sx={{position: 'absolute', bottom: 1}}>
-        Made by <Link href="https://jaeli.me/" target="_blank" rel="noreferrer">Jae Li</Link>
-        </Typography>
-
     </Container>
       
   );
