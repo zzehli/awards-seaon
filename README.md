@@ -4,10 +4,10 @@
 This project is [live](https://award-nominations.netlify.app/)!
 
 ## Introduction
-This responsive web application allows you to look up movies from the Open Movie Database and
-nominate movies for awards. You can export and view the list of nominations via URLs. This site is a single page application built with React and Material UI. This project is based on Shopify's fontend internship challenge.
+This web application allows you to look up movies from the Open Movie Database and
+nominate movies for awards. You can export and view the list of nominations via URLs. This site is a single-page application built with React and Material UI. This project is based on Shopify's frontend internship challenge.
 
-Some of the technical challenges in this project include handling query parameters as a means of export and retrieve movies, making reusable component that can be used in multiple parts of the interface, designing where the states locate across multiple components.
+Some of the technical challenges in this project include handling query parameters as a means of exporting and retrieving movies, making reusable components that can be used in multiple parts of the interface, and designing where the states are located across multiple components.
 
 
 ## Reference
